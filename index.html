@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cedar & Stone Realty | Modern Homes, Human Guidance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #f6f1e8;
+            --clay: #d9b38c;
+            --ember: #cc5a36;
+            --forest: #1f3a2d;
+            --ink: #1d1d1b;
+            --mist: #f9f7f2;
+            --stone: #b8b2a7;
+            --accent: #2d5c52;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Manrope", sans-serif;
+            color: var(--ink);
+            background: radial-gradient(circle at top left, #fff5e7 0%, #f7efe3 42%, #f2e8da 100%);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: "Fraunces", serif;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .wrap {
+            width: min(1120px, 92vw);
+            margin: 0 auto;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 48px;
+            align-items: center;
+            padding: 140px 0 90px;
+        }
+
+        .badge {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--forest);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(31, 58, 45, 0.2);
+            padding: 10px 18px;
+            border-radius: 999px;
+        }
+
+        .headline {
+            font-size: clamp(2.8rem, 4vw, 4.6rem);
+            line-height: 1.05;
+            margin: 20px 0;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 520px;
+            color: #3a3a37;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 28px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.98rem;
+            border: 1px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn.primary {
+            background: var(--forest);
+            color: var(--mist);
+            box-shadow: 0 18px 30px rgba(31, 58, 45, 0.22);
+        }
+
+        .btn.secondary {
+            border-color: rgba(31, 58, 45, 0.3);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-card {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(246, 241, 232, 0.75));
+            border-radius: 32px;
+            padding: 28px;
+            box-shadow: 0 30px 70px rgba(23, 23, 20, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(204, 90, 54, 0.18), transparent 55%);
+            pointer-events: none;
+        }
+
+        .hero-media {
+            border-radius: 26px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-media img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            background: white;
+            border-radius: 18px;
+            padding: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--forest);
+        }
+
+        .stat span {
+            font-size: 0.78rem;
+            color: #5b5b55;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 3vw, 3rem);
+        }
+
+        .section-title p {
+            max-width: 420px;
+            color: #4c4c47;
+            line-height: 1.6;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(31, 58, 45, 0.08);
+            box-shadow: 0 14px 30px rgba(16, 16, 14, 0.08);
+        }
+
+        .card h3 {
+            margin-top: 14px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            margin-top: 10px;
+            color: #4b4b45;
+            line-height: 1.6;
+        }
+
+        .listing {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 14px;
+        }
+
+        .listing img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .listing .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.86rem;
+            color: #3f3f39;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .amenities {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .amenity {
+            padding: 18px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px dashed rgba(31, 58, 45, 0.2);
+        }
+
+        .quote {
+            background: var(--forest);
+            color: white;
+            border-radius: 28px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(204, 90, 54, 0.4), transparent 60%);
+        }
+
+        .quote p,
+        .quote span {
+            position: relative;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 16px;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 16px;
+            align-items: start;
+            background: rgba(255, 255, 255, 0.82);
+            padding: 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(31, 58, 45, 0.12);
+        }
+
+        .step-number {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--accent);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 600;
+        }
+
+        .cta-panel {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px;
+            padding: 36px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(31, 58, 45, 0.95), rgba(45, 92, 82, 0.92));
+            color: white;
+        }
+
+        .cta-panel form {
+            display: grid;
+            gap: 14px;
+        }
+
+        .cta-panel input,
+        .cta-panel select {
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+        }
+
+        .cta-panel input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-panel button {
+            background: var(--clay);
+            border: none;
+            color: var(--ink);
+            padding: 14px 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .floating-shape {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: rgba(204, 90, 54, 0.12);
+            border-radius: 50%;
+            top: 120px;
+            right: 8vw;
+            filter: blur(2px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+            mix-blend-mode: multiply;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1080px, 90vw);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(31, 58, 45, 0.1);
+            border-radius: 999px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            z-index: 3;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--forest);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-size: 0.9rem;
+        }
+
+        .nav-cta {
+            background: var(--forest);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+
+        @media (max-width: 960px) {
+            .hero-grid,
+            .split,
+            .cta-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-media img {
+                height: 300px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .hero-stats,
+            .cards,
+            .amenities {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="floating-shape" aria-hidden="true"></div>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-mark">CS</div>
+            Cedar & Stone Realty
+        </div>
+        <div class="nav-links">
+            <a href="#listings">Listings</a>
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#stories">Stories</a>
+        </div>
+        <a class="nav-cta" href="#consult">Book a Consult</a>
+    </nav>
+
+    <main class="wrap">
+        <section class="hero-grid">
+            <div class="reveal">
+                <span class="badge">Neighborhood first</span>
+                <h1 class="headline">Modern homes, human guidance, and a plan that feels calm.</h1>
+                <p class="subhead">Cedar & Stone is a boutique realty team for buyers and sellers who want clear strategy, local insight, and a white-glove experience from search to closing.</p>
+                <div class="cta-row">
+                    <a class="btn primary" href="#consult">Start a custom plan</a>
+                    <a class="btn secondary" href="#listings">See curated listings</a>
+                </div>
+            </div>
+            <div class="hero-card reveal">
+                <div class="hero-media">
+                    <img src="https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=900&q=80" alt="Warm modern living room">
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>98%</strong>
+                        <span>List-to-close rate</span>
+                    </div>
+                    <div class="stat">
+                        <strong>21 days</strong>
+                        <span>Average on market</span>
+                    </div>
+                    <div class="stat">
+                        <strong>$42M</strong>
+                        <span>2025 sales volume</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="listings" class="section reveal">
+            <div class="section-title">
+                <div>
+                    <h2>Featured listings with room to breathe.</h2>
+                </div>
+                <p>Curated homes across the city with a focus on light, layout, and long-term value.</p>
+            </div>
+            <div class="cards">
+                <article class="card listing">
+                    <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?auto=format&fit=crop&w=800&q=80" alt="Bright downtown loft">
+                    <div>
+                        <h3>Riverlight Loft</h3>
+                        <p>2 bed, 2 bath with skyline views, hardwood floors, and a balcony made for sunsets.</p>
+                        <div class="meta">
+                            <span>Downtown</span>
+                            <strong>$1.24M</strong>
+                        </div>
+                    </div>
+                </article>
+                <article class="card listing">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80" alt="Modern hillside home">
+                    <div>
+                        <h3>Hillside Gallery</h3>
+                        <p>4 bed, 3 bath modern build with a studio wing and a terraced garden.</p>
+                        <div class="meta">
+                            <span>North Ridge</span>
+                            <strong>$2.05M</strong>
+                        </div>
+                    </div>
+                </article>
+                <article class="card listing">
+                    <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" alt="Cozy craftsman home">
+                    <div>
+                        <h3>Elm Street Craftsman</h3>
+                        <p>3 bed, 2 bath with a renovated kitchen, sunroom, and a deep backyard.</p>
+                        <div class="meta">
+                            <span>Oakwood</span>
+                            <strong>$845K</strong>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="services" class="section split reveal">
+            <div>
+                <div class="section-title" style="margin-bottom: 24px;">
+                    <h2>Services tuned to real life, not just transactions.</h2>
+                </div>
+                <div class="amenities">
+                    <div class="amenity">
+                        <h4>Buyer Roadmapping</h4>
+                        <p>Financing prep, neighborhood filters, and a timeline you can actually live with.</p>
+                    </div>
+                    <div class="amenity">
+                        <h4>Seller Storytelling</h4>
+                        <p>Editorial listing prep, staging direction, and strategic launch windows.</p>
+                    </div>
+                    <div class="amenity">
+                        <h4>Off-Market Access</h4>
+                        <p>Quiet listings, private tours, and a network of local agents to unlock options.</p>
+                    </div>
+                    <div class="amenity">
+                        <h4>Negotiation Studio</h4>
+                        <p>Offer framing, inspection guidance, and market intel that protects your leverage.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="quote">
+                <p style="font-size: 1.4rem; line-height: 1.6;">"We measure success by how calm our clients feel. The right home is part of it, but the experience is the memory."</p>
+                <span style="display: block; margin-top: 20px; font-weight: 600;">Mila Cortez, Managing Broker</span>
+            </div>
+        </section>
+
+        <section id="process" class="section reveal">
+            <div class="section-title">
+                <div>
+                    <h2>A clear, confident process.</h2>
+                </div>
+                <p>Three focused phases that remove guesswork and keep you informed at every step.</p>
+            </div>
+            <div class="timeline">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div>
+                        <h3>Vision + Constraints</h3>
+                        <p>We define your must-haves, budget reality, and a timeline grounded in your life.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div>
+                        <h3>Curate + Tour</h3>
+                        <p>Shortlist neighborhoods, schedule intentional tours, and apply local market insight.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div>
+                        <h3>Negotiate + Close</h3>
+                        <p>Offer strategy, inspection navigation, and closing coordination with your team.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stories" class="section reveal">
+            <div class="section-title">
+                <div>
+                    <h2>Client stories from first showing to keys in hand.</h2>
+                </div>
+                <p>Every client gets a tailored plan and an advocate who listens to the details.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <h3>"We felt guided, not rushed."</h3>
+                    <p>"Cedar & Stone filtered down dozens of listings to the five that mattered. We ended up in a home that feels designed for our family."</p>
+                    <p style="margin-top: 18px; font-weight: 600;">Nico + Jamie, First-time buyers</p>
+                </article>
+                <article class="card">
+                    <h3>"The launch strategy paid for itself."</h3>
+                    <p>"Their staging advice and pricing model were spot on. We received three offers in the first week."</p>
+                    <p style="margin-top: 18px; font-weight: 600;">Paige L., Seller</p>
+                </article>
+                <article class="card">
+                    <h3>"Local knowledge you can feel."</h3>
+                    <p>"They helped us understand each neighborhood's rhythm. That confidence made the move feel exciting."</p>
+                    <p style="margin-top: 18px; font-weight: 600;">Arun R., Relocation client</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="consult" class="section reveal">
+            <div class="cta-panel">
+                <div>
+                    <h2 style="font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 16px;">Start with a tailored home plan.</h2>
+                    <p style="line-height: 1.7; color: rgba(255, 255, 255, 0.86);">Tell us where you are in the journey. We will send a custom roadmap within 24 hours, plus a neighborhood snapshot.</p>
+                </div>
+                <form id="consultForm">
+                    <input type="text" name="name" placeholder="Full name" required>
+                    <input type="email" name="email" placeholder="Email address" required>
+                    <select name="goal" required>
+                        <option value="">Primary goal</option>
+                        <option value="buy">Buying a home</option>
+                        <option value="sell">Selling a home</option>
+                        <option value="both">Buying and selling</option>
+                    </select>
+                    <button type="submit">Send my plan</button>
+                    <span id="formSuccess" style="display: none; font-size: 0.85rem;">Thanks. Your custom plan is on the way.</span>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section" style="padding-top: 10px;">
+        <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; color: #4a4a44; font-size: 0.9rem;">
+            <span>2026 Cedar & Stone Realty. All rights reserved.</span>
+            <span>License 021884 | Modern homes. Human guidance.</span>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById("consultForm");
+        const formSuccess = document.getElementById("formSuccess");
+        const revealItems = document.querySelectorAll(".reveal");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            formSuccess.style.display = "block";
+            form.reset();
+        });
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+    </script>
+</body>
+</html>
